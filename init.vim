@@ -10,7 +10,6 @@ set smartcase
 
 "" colors
 set background=light
-colorscheme solarized
 
 "" perf
 set ttyfast
@@ -20,6 +19,9 @@ set regexpengine=1
 "" vexplorer setting
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
 
 "" custom statusline
 function! GitBranch()
