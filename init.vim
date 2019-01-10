@@ -17,9 +17,12 @@ set ttyfast
 set lazyredraw
 set regexpengine=1
 
-"" vexplorer setting
+"" netrw setting
+set nocp
+filetype plugin on
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
+autocmd FileType netrw setl bufhidden=delete
 
 "" custom statusline
 function! GitBranch()
@@ -72,10 +75,12 @@ Plug 'tomlion/vim-solidity'
 Plug 'jparise/vim-graphql'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'herringtondarkholme/yats.vim'
+Plug 'ambv/black'
 call plug#end()
 
 "" ALE config
+let g:ale_linters = {'javascript': ['eslint'], 'clojure': ['joker']}
+""let g:ale_linters = {'javascript': [''], 'clojure': ['joker']}
+""let g:ale_fixers = {'javascript': ['prettier-standard']}
 let g:ale_fix_on_save = 1
-let g:ale_linters = {'javascript': ['']}
-let g:ale_fixers = {'javascript': ['prettier-standard']}
-""let g:ale_fixers = {'javascript': ['prettier']}
+let g:ale_fixers = {'javascript': ['prettier']}
