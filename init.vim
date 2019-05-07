@@ -60,24 +60,27 @@ autocmd BufWinLeave * call clearmatches()
 set expandtab
 set shiftwidth=2
 
-"" jsx config
-let g:jsx_ext_required = 0
-
 "" plugin config
 call plug#begin('$HOME/.config/nvim/.plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'w0rp/ale'
 Plug 'bling/vim-bufferline'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'tomlion/vim-solidity'
+Plug 'airblade/vim-gitgutter'
+Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'herringtondarkholme/yats.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  " use tab for completion
+  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 call plug#end()
 
 "" ALE config
 let g:ale_fix_on_save = 1
-let g:ale_linters = {'javascript': ['']}
-let g:ale_fixers = {'javascript': ['prettier-standard']}
-""let g:ale_fixers = {'javascript': ['prettier']}
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['prettier']}
+
+"" auto indent
+set autoindent
+
+"" jsx config
+let g:jsx_ext_required = 0
