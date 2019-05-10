@@ -62,17 +62,14 @@ set shiftwidth=2
 
 "" plugin config
 call plug#begin('$HOME/.config/nvim/.plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf'
 Plug 'w0rp/ale'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  let g:deoplete#enable_at_startup = 1
-  " use tab for completion
-  inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-call plug#end()
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 "" ALE config
 let g:ale_fix_on_save = 1
