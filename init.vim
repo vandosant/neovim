@@ -16,7 +16,9 @@ set ttyfast
 set lazyredraw
 set regexpengine=1
 
-"" vexplorer setting
+"" netrw setting
+set nocp
+filetype plugin on
 let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
 " Per default, netrw leaves unmodified buffers open. This autocommand
@@ -69,6 +71,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'ambv/black'
+call plug#end()
 
 "" ALE config
 let g:ale_fix_on_save = 1
