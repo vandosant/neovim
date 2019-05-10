@@ -62,8 +62,7 @@ set shiftwidth=2
 
 "" plugin config
 call plug#begin('$HOME/.config/nvim/.plugged')
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'w0rp/ale'
 Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
