@@ -11,10 +11,15 @@ set smartcase
 "" colors
 set background=light
 
-"" perf
+"" performance
 set ttyfast
 set lazyredraw
 set regexpengine=1
+
+"" spacing
+set autoindent
+set backspace=indent,eol,start
+set smarttab
 
 "" netrw setting
 set nocp
@@ -71,16 +76,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'ambv/black'
+"" Plug 'ambv/black'
 call plug#end()
 
 "" ALE config
 let g:ale_fix_on_save = 1
 let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_fixers = {'javascript': ['prettier']}
-
-"" auto indent
-set autoindent
 
 "" jsx config
 let g:jsx_ext_required = 0
