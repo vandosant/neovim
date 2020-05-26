@@ -1,0 +1,6 @@
+{
+  "tsserver.npm": "~/n/bin/npm",
+  "tsserver.trace.server": "verbose",
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true
+}
