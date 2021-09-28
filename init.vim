@@ -14,7 +14,8 @@ set background=light
 "" performance
 set ttyfast
 set lazyredraw
-set regexpengine=1
+set regexpengine=0
+set re=0
 
 "" spacing
 set autoindent
@@ -210,9 +211,10 @@ Plug 'jparise/vim-graphql'
 call plug#end()
 
 "" ALE config
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
 let g:ale_fix_on_save = 1
-let g:ale_linters = {'javascript': ['eslint'], 'graphql': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier'], 'graphql': ['prettier'], 'typescript': ['prettier']}
-
-"" jsx config
-let g:jsx_ext_required = 0
+let g:ale_linters = {'javascript': ['eslint'], 'graphql': ['eslint'], 'jsx': ['eslint']}
+let g:ale_fixers = {'javascript': ['prettier'], 'graphql': ['prettier'], 'typescript': ['prettier'], 'json': ['prettier'], 'jsx': ['prettier'], 'html': ['prettier']}
