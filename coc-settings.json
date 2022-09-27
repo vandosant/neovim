@@ -1,5 +1,5 @@
 {
-  "tsserver.npm": ".nvm/versions/node/v12.16.1/bin/npm",
+  "tsserver.npm": ".nvm/versions/node/v16.14.0/bin/npm",
   "tsserver.trace.server": "verbose",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "typescript.format.insertSpaceBeforeFunctionParenthesis": true

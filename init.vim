@@ -80,7 +80,7 @@ set nowritebackup
 set cmdheight=2
 
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=100
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -207,6 +207,7 @@ Plug 'w0rp/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "" Plug 'ambv/black'
 call plug#end()
 
@@ -216,5 +217,10 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
 let g:ale_fix_on_save = 1
-let g:ale_linters = {'javascript': ['eslint'], 'graphql': ['eslint'], 'jsx': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier'], 'graphql': ['prettier'], 'typescript': ['prettier'], 'json': ['prettier'], 'jsx': ['prettier'], 'html': ['prettier']}
+let g:ale_linters_explicit = 1
+let g:ale_linters = {'javascript': ['eslint'], 'graphql': ['eslint'], 'jsx': ['eslint'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'], 'tsx':['eslint', 'tsserver']}
+let g:ale_fixers = {'javascript': ['prettier'], 'graphql': ['prettier'], 'typescript': ['prettier'], 'json': ['prettier'], 'jsx': ['prettier'], 'html': ['prettier'], 'typescriptreact': ['prettier'], 'md': ['prettier'], 'terraform': ['terraform']}
+
+"" Vim-Go
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_command = 'golangci-lint'
