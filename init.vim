@@ -203,12 +203,12 @@ call plug#begin('$HOME/.config/nvim/.plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'w0rp/ale'
-"" Plug 'bling/vim-bufferline'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-"" Plug 'ambv/black'
+Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'rust-lang/rust.vim'
 call plug#end()
 
 "" ALE config
