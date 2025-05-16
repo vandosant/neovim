@@ -115,7 +115,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd :ALEGoToDefinition<cr>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -202,13 +202,18 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 call plug#begin('$HOME/.config/nvim/.plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot'
 Plug 'jparise/vim-graphql'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'rust-lang/rust.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 "" ALE config
@@ -217,10 +222,44 @@ augroup FiletypeGroup
     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 augroup END
 let g:ale_fix_on_save = 1
-let g:ale_linters_explicit = 1
-let g:ale_linters = {'javascript': ['eslint'], 'graphql': ['eslint'], 'jsx': ['eslint'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'], 'tsx':['eslint', 'tsserver']}
-let g:ale_fixers = {'javascript': ['prettier'], 'graphql': ['prettier'], 'typescript': ['prettier'], 'json': ['prettier'], 'jsx': ['prettier'], 'html': ['prettier'], 'typescriptreact': ['prettier'], 'md': ['prettier'], 'terraform': ['terraform']}
+let g:ale_linters = {'*': ['eslint'], 'typescript': ['eslint', 'tsserver'], 'typescriptreact': ['eslint', 'tsserver'], 'tsx': ['eslint', 'tsserver'], 'rust': ['analyzer'], 'python': ['pyright']}
+let g:ale_fixers = {'*': ['prettier', 'eslint'], 'terraform': ['terraform'], 'rust': ['rustfmt'], 'python': ['black', 'isort']}
+let g:ale_python_isort_options = '--profile=black --line-length=100'
 
 "" Vim-Go
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_command = 'golangci-lint'
+let g:go_metalinter_autosave = 0
+
+"" Rust config https://rust-analyzer.github.io/manual.html#installation
+"" let g:LanguageClient_serverCommands = {
+"" \ 'rust': ['rust-analyzer'],
+"" \ }
+"" lua require'lspconfig'.rust_analyzer.setup({})
+"" lua require'lspconfig'.pyright.setup({})
+"" lua << EOF
+"" local nvim_lsp = require'lspconfig'
+"" local on_attach = function(client)
+""     require'completion'.on_attach(client)
+"" end
+""
+"" nvim_lsp.rust_analyzer.setup({
+""     on_attach=on_attach,
+""     settings = {
+""         ["rust-analyzer"] = {
+""             imports = {
+""                 granularity = {
+""                     group = "module",
+""                 },
+""                 prefix = "self",
+""             },
+""             cargo = {
+""                 buildScripts = {
+""                     enable = true,
+""                 },
+""             },
+""             procMacro = {
+""                 enable = true
+""             },
+""         }
+""     }
+"" })
+"" EOF
